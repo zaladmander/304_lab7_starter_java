@@ -3,6 +3,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*,java.net.URLEncoder" %>
+<%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
 
 <%
     String url = "jdbc:sqlserver://cosc304_sqlserver:1433;DatabaseName=orders;TrustServerCertificate=True";		
@@ -62,6 +64,9 @@
 
 <%
     NumberFormat money = NumberFormat.getCurrencyInstance();
+    request.setAttribute("productId", productId);
+    request.setAttribute("productName", productName);
+    request.setAttribute("productPrice", productPrice);
 %>
 
 
@@ -98,9 +103,11 @@
 
             <p class="mt-3"><%= productDesc %></p>
 
-            <a href="addcart.jsp?id=<%= productId %>" class="btn btn-primary mt-3">
-                Add to Cart
-            </a>
+            <shop:addToCart
+                id="${productId}"
+                name="${productName}"
+                price="${productPrice}" />
+
 
             <br><br>
 

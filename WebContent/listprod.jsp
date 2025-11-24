@@ -1,6 +1,8 @@
 <%@ page import="java.sql.*,java.net.URLEncoder" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
+<%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,7 @@
 		<%= (request.getAttribute("currentPage") != null ? " - " : "") %>
 		<%= getServletContext().getInitParameter("siteTitle") %>
 	</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -86,16 +89,16 @@ try (Connection con = DriverManager.getConnection(url, uid, pw);)
 		String productId   = products.getString("productId");
 		String productName = products.getString("productName");
 		double productPrice= products.getDouble("productPrice");
-
+		request.setAttribute("productId", productId);
+		request.setAttribute("productName", productName);
+		request.setAttribute("productPrice", productPrice);
 %>
 	<tr>
 		<td>
-			<a href="addcart.jsp?
-				id=<%= URLEncoder.encode(productId, "UTF-8") %> &
-				name=<%= URLEncoder.encode(productName, "UTF-8") %>&
-				price=<%= URLEncoder.encode(Double.toString(productPrice), "UTF-8") %>">
-				Add to Cart
-			</a>
+			<shop:addToCart
+				id="${productId}"
+				name="${productName}"
+				price="${productPrice}" />
 		</td>
 		<td><%= productName %></td>
 		<td><%= money.format(productPrice) %></td>
