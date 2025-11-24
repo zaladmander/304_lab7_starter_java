@@ -7,10 +7,6 @@
 <%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
 
 <%
-    String url = "jdbc:sqlserver://cosc304_sqlserver:1433;DatabaseName=orders;TrustServerCertificate=True";		
-    String uid = "sa";
-    String pw = "304#sa#pw";
-
     // --- Retrieve product ID from query string ---
     String productId = request.getParameter("id");
 
@@ -19,12 +15,15 @@
     Double productPrice = null;
     String productDesc = "";
     String imageUrl = null;
+    byte[] productImage = null;
+    boolean hasBlob = false;
 
-    try (Connection con = DriverManager.getConnection(url, uid, pw)) {
+    try {
+		getConnection();
 
         if (productId != null) {
             String sql =
-                "SELECT productName, productPrice, productImageURL, productDesc " +
+                "SELECT productName, productPrice, productImageURL, productImage, productDesc " +
                 "FROM Product WHERE productId = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
@@ -35,7 +34,9 @@
                 productName = rs.getString("productName");
                 productPrice = rs.getDouble("productPrice");
                 imageUrl = rs.getString("productImageURL");
+                productImage = rs.getBytes("productImage");
                 productDesc = rs.getString("productDesc");
+                hasBlob = (productImage != null && productImage.length > 0);
             }
 
             rs.close();
@@ -85,7 +86,11 @@
             <% } %>
 
             <%-- Binary DB image using displayImage.jsp --%>
-            <img src="displayImage.jsp?id=<%= productId %>" class="img-fluid">
+            <% if (hasBlob) { %>
+                <img src="displayImage.jsp?id=<%= productId %>" class="img-fluid mb-3">
+            <% } else if ((imageUrl == null || imageUrl.isEmpty())) { %>
+                <p>No image available.</p>
+            <% } %>
 
         </div>
 

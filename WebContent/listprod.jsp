@@ -2,6 +2,7 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
+<%@ include file="jdbc.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -43,14 +44,12 @@ catch (java.lang.ClassNotFoundException e)
 // Variable name now contains the search string the user entered
 // Use it to build a query and print out the resultset.  Make sure to use PreparedStatement!
 
-String url = "jdbc:sqlserver://cosc304_sqlserver:1433;DatabaseName=orders;TrustServerCertificate=True";		
-String uid = "sa";
-String pw = "304#sa#pw";
+
 NumberFormat money = NumberFormat.getCurrencyInstance();
 
 // Make the connection
-try (Connection con = DriverManager.getConnection(url, uid, pw);)
-{
+try {
+	getConnection();
 	String sql;
 	PreparedStatement pstmt;
 	if (name == null || name.trim().isEmpty())
