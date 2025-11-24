@@ -100,6 +100,10 @@
                 <% } %>
             </h3>
 
+            <h5 class="text-muted mb-2">
+                Product ID: <%= productId %>
+            </h5>
+
 
             <p class="mt-3"><%= productDesc %></p>
 
