@@ -8,7 +8,7 @@
 <html>
 <head>
     <%
-        String currentPage = "Admin Dashboard - Sales Report by Day";   
+        String currentPage = "Sales Report";   
         request.setAttribute("currentPage", currentPage);
 	%>
 
@@ -20,42 +20,58 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="header.jsp" />
 
-<table border="1" cellpadding="5" cellspacing="0">
-    <tr>
-        <th>Order Date</th>
-        <th>Total Sales Amount</th>
-    </tr>
-<%
-    String sql = "SELECT orderDate, SUM(totalAmount) AS totalAmount" +
-                    " FROM ordersummary GROUP BY orderDate ORDER BY orderDate DESC;";
+<h1 class="text-center mt-4 mb-3">Admin Sales Report by Day</h1>
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered table-sm text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Total Sales Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <%
+                    String sql =
+                        "SELECT CONVERT(DATE, orderDate) AS orderDate, " +
+                        "       SUM(totalAmount) AS totalAmount " +
+                        "FROM ordersummary " +
+                        "GROUP BY CONVERT(DATE, orderDate) " +
+                        "ORDER BY CONVERT(DATE, orderDate) DESC";
 
-    try {
-        getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        NumberFormat money = NumberFormat.getCurrencyInstance();  
-        while (rs.next()) {
-            String orderDate = rs.getString("orderDate");
-            double totalAmount = rs.getDouble("totalAmount");
+                    try {
+                        getConnection();
+                        PreparedStatement ps = con.prepareStatement(sql);
+                        ResultSet rs = ps.executeQuery();
+                        NumberFormat money = NumberFormat.getCurrencyInstance();
 
-            request.setAttribute("orderDate", orderDate);
-            request.setAttribute("totalAmount", totalAmount);
-%>
-    <tr>
-        <td><%= orderDate %></td>
-        <td><%= money.format(totalAmount) %></td>
-    </tr>
-<%
-        }
-        rs.close();
-        ps.close();
-        closeConnection();
-    } catch (SQLException e) {
-        out.println("<p>Error generating sales report: " + e + "</p>");
-    }
-%>
-</table>
+                        while (rs.next()) {
+                            String orderDate = rs.getString("orderDate");
+                            double totalAmount = rs.getDouble("totalAmount");
+                %>
+                            <tr>
+                                <td><%= orderDate %></td>
+                                <td><%= money.format(totalAmount) %></td>
+                            </tr>
+                <%
+                        }
+
+                        rs.close();
+                        ps.close();
+                        closeConnection();
+                    } catch (SQLException e) {
+                        out.println("<tr><td colspan='2'>Error generating sales report: "
+                                    + e.getMessage() + "</td></tr>");
+                    }
+                %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 </body>
