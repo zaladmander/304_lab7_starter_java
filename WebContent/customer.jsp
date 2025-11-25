@@ -29,8 +29,8 @@
 try {
 	getConnection();
 
-	String sql = "SELECT firstName, lastName, email, phonenum, address, city," +
-				" state, postalCode, country, userId, password " +
+	String sql = "SELECT customerId, firstName, lastName, email, phonenum, address, city," +
+				" state, postalCode, country, userId " +
 				"FROM Customer WHERE userId = ?";
 	PreparedStatement ps = con.prepareStatement(sql);
 	ps.setString(1, userName);
@@ -38,9 +38,9 @@ try {
 
 	if (rs.next()) {
 		out.println("<h2>Customer Information</h2>");
+		out.println("<p>Id: " + rs.getString("customerId") + "</p>");
 		out.println("<p>Name: " + rs.getString("firstName") + " " + rs.getString("lastName") + "</p>");
 		out.println("<p>Username: " + rs.getString("userId") + "</p>");
-		out.println("<p>Password: " + rs.getString("password") + "</p>");
 		out.println("<p>Email: " + rs.getString("email") + "</p>");
 		out.println("<p>Phone: " + rs.getString("phonenum") + "</p>");
 		out.println("<p>Address: " + rs.getString("address") + ", " +

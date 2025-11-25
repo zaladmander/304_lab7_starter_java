@@ -9,13 +9,19 @@
 
 <div style="margin:0 auto;text-align:center;display:inline">
 
-<h3>Please Login to System</h3>
+	<h3>Please Login to System</h3>
 
-<%
-// Print prior error login message if present
-if (session.getAttribute("loginMessage") != null)
-	out.println("<p>"+session.getAttribute("loginMessage").toString()+"</p>");
-%>
+	<%
+	String msg = (String) session.getAttribute("loginMessage");
+        if (msg != null) {
+	%>
+			<p style="color:red;">
+				<%= msg %>
+			</p>
+	<%
+			session.removeAttribute("loginMessage");
+		}
+	%>
 
 <br>
 <form name="MyForm" method=post action="validateLogin.jsp">
