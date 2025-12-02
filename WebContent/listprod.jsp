@@ -1,23 +1,15 @@
+<%@ include file="/WEB-INF/jdbc.jsp" %>
+
 <%@ page import="java.sql.*,java.net.URLEncoder" %>
 <%@ page import="java.text.NumberFormat" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
-<%@ include file="jdbc.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<%
-		String currentPage = "Products";   
-		request.setAttribute("currentPage", currentPage);
-	%>
-
-    <title>
-		<%= (request.getAttribute("currentPage") != null ? request.getAttribute("currentPage") : "") %> 
-		<%= (request.getAttribute("currentPage") != null ? " - " : "") %>
-		<%= getServletContext().getInitParameter("siteTitle") %>
-	</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <shop:head pageName="Products" />
 
 	<style>
 		.product-grid {

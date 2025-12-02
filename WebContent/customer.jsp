@@ -1,3 +1,8 @@
+<%@ include file="/WEB-INF/jdbc.jsp" %>
+<%@ include file="/WEB-INF/auth.jsp"%>
+
+<%@ page import="java.text.NumberFormat" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +20,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-<%@ include file="auth.jsp"%>
-<%@ page import="java.text.NumberFormat" %>
-<%@ include file="jdbc.jsp" %>
 
 <%
 	String userName = (String) session.getAttribute("authenticatedUser");

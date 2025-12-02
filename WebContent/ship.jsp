@@ -1,3 +1,5 @@
+<%@ include file="/WEB-INF/jdbc.jsp" %>
+    
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.HashMap" %>
@@ -5,7 +7,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Date" %>
-<%@ include file="jdbc.jsp" %>
 
 <html>
 <head>

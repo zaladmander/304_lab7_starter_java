@@ -1,7 +1,8 @@
+<%@ include file="/WEB-INF/jdbc.jsp" %>
+    
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.Scanner" %>
 <%@ page import="java.io.File" %>
-<%@ include file="jdbc.jsp" %>
 
 <html>
 <head>

@@ -1,5 +1,5 @@
-<%@ include file="jdbc.jsp" %>
-<%@ include file="auth.jsp" %>
+<%@ include file="/WEB-INF/jdbc.jsp" %>
+<%@ include file="/WEB-INF/auth.jsp" %>
 
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.NumberFormat" %>
