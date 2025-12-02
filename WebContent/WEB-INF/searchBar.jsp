@@ -2,6 +2,8 @@
         role="search"
         style="display: flex; width: 100%;">
 
+    <jsp:include page="/WEB-INF/categoryDropdown.jsp" />
+
     <input
         type="text"
         name="productName"
