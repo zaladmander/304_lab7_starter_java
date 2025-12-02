@@ -1,4 +1,5 @@
 <%@ include file="/WEB-INF/jdbc.jsp" %>
+<%@ include file="/WEB-INF/productSearch.jsp" %>
 
 <%@ page import="java.sql.*,java.net.URLEncoder" %>
 
@@ -14,9 +15,7 @@
 	<jsp:include page="/WEB-INF/header.jsp" />
 
 <% 
-// Get product name to search for
-String name = request.getParameter("productName");
-String resultTitle = null;
+String resultTitle = "";
 
 // Note: Forces loading of SQL Server driver
 try {// Load driver class
@@ -30,25 +29,12 @@ try {// Load driver class
 // Make the connection
 try {
 	getConnection();
-	String sql;
-	PreparedStatement pstmt;
-	if (name == null || name.trim().isEmpty()) {
-		// Query to get all products
-		sql = "SELECT p.productId, p.productName, p.productPrice, p.productImageURL, c.categoryName " +
-				"FROM Product p JOIN Category c ON p.categoryId = c.categoryId " +
-				"ORDER BY p.productName;";
-		pstmt = con.prepareStatement(sql);
-		resultTitle = "All Products";
-	} else {
-		// Query to get products that match search string
-		sql = "SELECT p.productId, p.productName, p.productPrice, p.productImageURL, c.categoryName " +
-				"FROM Product p JOIN Category c ON p.categoryId = c.categoryId " +
-				"WHERE p.productName LIKE ? " +
-				"ORDER BY p.productName;";
-		pstmt = con.prepareStatement(sql);	
-		pstmt.setString(1, "%" + name + "%");
-		resultTitle = "Products matching '" + name + "'";
-	}	
+	String sql = buildProductSearchSQL(request);
+    PreparedStatement pstmt = con.prepareStatement(sql);
+
+    bindProductSearchSQL(pstmt, request);
+
+    resultTitle = titleProductSearchSQL(request);
 %> 
 
 <%
