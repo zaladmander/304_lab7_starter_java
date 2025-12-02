@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/jdbc.jsp" %>
 
 <%@ page import="java.sql.*,java.net.URLEncoder" %>
-<%@ page import="java.text.NumberFormat" %>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
@@ -91,6 +90,7 @@
 
 <% // Get product name to search for
 String name = request.getParameter("productName");
+String resultTitle = null;
 		
 //Note: Forces loading of SQL Server driver
 try
@@ -101,12 +101,6 @@ catch (java.lang.ClassNotFoundException e)
 {
 	out.println("ClassNotFoundException: " +e);
 }
-
-// Variable name now contains the search string the user entered
-// Use it to build a query and print out the resultset.  Make sure to use PreparedStatement!
-
-
-NumberFormat money = NumberFormat.getCurrencyInstance();
 
 // Make the connection
 try {
@@ -120,8 +114,6 @@ try {
 				"FROM Product p JOIN Category c ON p.categoryId = c.categoryId " +
 				"ORDER BY p.productName;";
 		pstmt = con.prepareStatement(sql);
-		// H2 says All products
-		%> <h2>All Products</h2> <%
 	}
 	else
 	{
@@ -132,66 +124,24 @@ try {
 				"ORDER BY p.productName;";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, "%" + name + "%");
-		// H2 says Products matching 'name'
-		%> <h2>Products matching '<%= name %>'</h2> <%
+		resultTitle = "Products matching '" + name + "'";
 	}
 	
 	%> 
 
-<div class="product-grid">
 <%
-    try (ResultSet products = pstmt.executeQuery();) {
-        while (products.next()) {
-            String productId    = products.getString("productId");
-            String productName  = products.getString("productName");
-            double productPrice = products.getDouble("productPrice");
-            String productImageURL = products.getString("productImageURL");
-            String categoryName = products.getString("categoryName");
-
-            request.setAttribute("productId", productId);
-            request.setAttribute("productName", productName);
-            request.setAttribute("productPrice", productPrice);
+	try (ResultSet products = pstmt.executeQuery()) {
+		if (!products.isBeforeFirst()) {
 %>
-    <div class="product-card">
-		<div class="product-card-image">
-			<a href="product.jsp?id=<%= productId %>">
-				<div class="product-img-wrap">
-					<img src="<%= productImageURL %>" 
-						alt="<%= productName %>" 
-						class="product-img">
-				</div>
-			</a>
-		</div>
-
-
-        <h3 class="product-card-title">
-            <a href="product.jsp?id=<%= productId %>">
-                <%= productName %>
-            </a>
-        </h3>
-
-        <div class="product-card-category">
-            <%= categoryName %>
-        </div>
-
-        <div class="product-card-price">
-			<a href="product.jsp?id=<%= productId %>">
-				<%= money.format(productPrice) %>
-			</a>
-        </div>
-
-		<div class="add-to-cart">
-            <shop:addToCart
-                id="${productId}"
-                name="${productName}"
-                price="${productPrice}" />
-        </div>
-    </div>
+			<p>No products found.</p>
 <%
-        } // end while
-    } // end try products
+		} else {
 %>
-</div>
+			<shop:displayProductGrid productResultSet="<%= products %>" title="<%= resultTitle %>" />
+<%
+		}
+	}
+%>
 
 <%
 	} // End try
