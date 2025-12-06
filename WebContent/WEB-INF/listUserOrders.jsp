@@ -1,6 +1,7 @@
 <%@ page import="java.sql.*, java.text.NumberFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/jdbc.jsp" %>
+<%@ include file="/WEB-INF/escapeHTML.jsp" %>
 
 <%
     String userId = request.getParameter("userId");
@@ -54,11 +55,11 @@
 
         <!-- all location info grouped together -->
         <td>
-            <%= rs.getString("shiptoAddress") %><br/>
-            <%= rs.getString("shiptoCity") %>,
-            <%= rs.getString("shiptoState") %>
-            <%= rs.getString("shiptoPostalCode") %><br/>
-            <%= rs.getString("shiptoCountry") %>
+            <%= escapeHtml(rs.getString("shiptoAddress")) %><br/>
+            <%= escapeHtml(rs.getString("shiptoCity")) %>,
+            <%= escapeHtml(rs.getString("shiptoState")) %>
+            <%= escapeHtml(rs.getString("shiptoPostalCode")) %><br/>
+            <%= escapeHtml(rs.getString("shiptoCountry")) %>
         </td>
     </tr>
 <%
