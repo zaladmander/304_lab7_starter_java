@@ -68,8 +68,11 @@
         pstmt.close();
         closeConnection();
     } catch (SQLException e) {
+        // Log the exception server-side for debugging
+        System.err.println("Error loading user orders:");
+        e.printStackTrace(System.err);
 %>
-    <p style="color:red;">Error loading your orders: <%= e.getMessage() %></p>
+    <p style="color:red;">Error loading your orders. Please try again later.</p>
 <%
     }
 %>
