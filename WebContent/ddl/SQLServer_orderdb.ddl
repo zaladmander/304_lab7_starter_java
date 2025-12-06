@@ -67,7 +67,7 @@ CREATE TABLE category (
 
 CREATE TABLE product (
     productId           INT IDENTITY,
-    productName         VARCHAR(60),
+    productName         VARCHAR(100),
     productPrice        DECIMAL(10,2),
     productImageURL     VARCHAR(100),
     productImage        VARBINARY(MAX),
@@ -334,12 +334,12 @@ VALUES (
 );
 
 UPDATE Product
-SET productImageURL = 'img/bleach57.avif'
+SET productImageURL = 'img/bleach57.jpg'
 WHERE productName = 'Bleach, Vol. 57: Out of Bloom';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 7: Steel Ball Run, Vol. 4',
+    'JoJos Bizarre Adventure Part 7: Steel Ball Run, Vol. 4',
     1,
     'Johnny and Gyro push deeper into the Steel Ball Run race as new Stand users close in, forcing them into brutal confrontations across the deadly American landscape.',
     26.99
@@ -347,23 +347,23 @@ VALUES (
 
 UPDATE Product
 SET productImageURL = 'img/sbr4.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 7: Steel Ball Run, Vol. 4';
+WHERE productName = 'JoJos Bizarre Adventure Part 7: Steel Ball Run, Vol. 4';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 7: Steel Ball Run, Vol. 1',
+    'JoJos Bizarre Adventure Part 7: Steel Ball Run, Vol. 1',
     1,
     'The Steel Ball Run race begins as Johnny Joestar, a former jockey, crosses paths with the mysterious Gyro Zeppeli and the deadly power of the Spin.',
     26.99
 );
 
 UPDATE Product
-SET productImageURL = 'img/sbr1.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 7: Steel Ball Run, Vol. 1';
+SET productImageURL = 'img/sbr1.jpg'
+WHERE productName = 'JoJos Bizarre Adventure Part 7: Steel Ball Run, Vol. 1';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 7: Steel Ball Run, Vol. 3',
+    'JoJos Bizarre Adventure Part 7: Steel Ball Run, Vol. 3',
     1,
     'Johnny and Gyro continue their advance in the Steel Ball Run race, facing lethal Stand abilities as rival racers close in across the treacherous terrain.',
     26.99
@@ -371,11 +371,11 @@ VALUES (
 
 UPDATE Product
 SET productImageURL = 'img/sbr3.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 7: Steel Ball Run, Vol. 3';
+WHERE productName = 'JoJos Bizarre Adventure Part 7: Steel Ball Run, Vol. 3';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 2: Battle Tendency, Vol. 3',
+    'JoJos Bizarre Adventure Part 2: Battle Tendency, Vol. 3',
     1,
     'Joseph Joestar clashes with the Pillar Men as their terrifying powers escalate, pushing him into deadly battles that demand every trick he can muster.',
     12.99
@@ -383,11 +383,11 @@ VALUES (
 
 UPDATE Product
 SET productImageURL = 'img/bt3.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 2: Battle Tendency, Vol. 3';
+WHERE productName = 'JoJos Bizarre Adventure Part 2: Battle Tendency, Vol. 3';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 2: Battle Tendency, Vol. 1',
+    'JoJos Bizarre Adventure Part 2: Battle Tendency, Vol. 1',
     1,
     'Joseph Joestar is dragged into a new war against the ancient Pillar Men, beginning a chaotic clash of wits, ridiculous tactics, and escalating supernatural power.',
     12.99
@@ -395,11 +395,11 @@ VALUES (
 
 UPDATE Product
 SET productImageURL = 'img/bt1.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 2: Battle Tendency, Vol. 1';
+WHERE productName = 'JoJos Bizarre Adventure Part 2: Battle Tendency, Vol. 1';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 1: Phantom Blood, Vol. 3',
+    'JoJos Bizarre Adventure Part 1: Phantom Blood, Vol. 3',
     1,
     'Jonathan Joestar faces Dio’s monstrous rise as their final confrontation erupts, pushing the limits of Hamon and sealing the tragic fate of the Joestar bloodline’s beginning.',
     12.99
@@ -407,11 +407,11 @@ VALUES (
 
 UPDATE Product
 SET productImageURL = 'img/pb3.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 1: Phantom Blood, Vol. 3';
+WHERE productName = 'JoJos Bizarre Adventure Part 1: Phantom Blood, Vol. 3';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
-    'JoJo''s Bizarre Adventure Part 4: Diamond Is Unbreakable, Vol. 6',
+    'JoJos Bizarre Adventure Part 4: Diamond Is Unbreakable, Vol. 6',
     1,
     'Josuke and the gang close in on new Stand threats in Morioh as the escalating mystery draws them toward deadly confrontations hidden within the quiet town.',
     19.99
@@ -419,7 +419,7 @@ VALUES (
 
 UPDATE Product
 SET productImageURL = 'img/diu6.avif'
-WHERE productName = 'JoJo''s Bizarre Adventure Part 4: Diamond Is Unbreakable, Vol. 6';
+WHERE productName = 'JoJos Bizarre Adventure Part 4: Diamond Is Unbreakable, Vol. 6';
 
 INSERT INTO product (productName, categoryId, productDesc, productPrice)
 VALUES (
