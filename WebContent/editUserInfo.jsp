@@ -45,8 +45,6 @@
         } catch (Exception e) {
             e.printStackTrace(); // Log the error to server logs
             request.setAttribute("dbError", "An error occurred while loading your account information. Please try again later.");
-            e.printStackTrace(); // Log the error to server logs
-            request.setAttribute("dbError", "An error occurred while loading your account information. Please try again later.");
         }
     
     %>
