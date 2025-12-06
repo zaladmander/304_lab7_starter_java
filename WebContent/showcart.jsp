@@ -16,6 +16,7 @@
     <jsp:include page="/WEB-INF/header.jsp" />
 
     <div class="container mt-4">
+        <jsp:include page="/WEB-INF/loadCart.jsp" />
         <%
             @SuppressWarnings({"unchecked"})
             HashMap<String, ArrayList<Object>> productList =

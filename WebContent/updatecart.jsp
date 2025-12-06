@@ -34,6 +34,10 @@ if (productList != null) {
     }
 
     session.setAttribute("productList", productList);
+    %>
+    <jsp:include page="/WEB-INF/syncCart.jsp" />
+    <%
+
 }
 
 // go back to cart

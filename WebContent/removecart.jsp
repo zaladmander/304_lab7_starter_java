@@ -15,6 +15,9 @@ String id = request.getParameter("id");
 if (productList != null && id != null) {
     productList.remove(id);    // yeet it from the cart
     session.setAttribute("productList", productList);
+    %>
+    <jsp:include page="/WEB-INF/syncCart.jsp" />
+    <%
 }
 
 // back to cart page no matter what
