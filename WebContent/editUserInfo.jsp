@@ -43,10 +43,24 @@
             ps.close();
             closeConnection();
         } catch (Exception e) {
+            e.printStackTrace(); // Log the error to server logs
+            request.setAttribute("dbError", "An error occurred while loading your account information. Please try again later.");
+            e.printStackTrace(); // Log the error to server logs
+            request.setAttribute("dbError", "An error occurred while loading your account information. Please try again later.");
         }
     
     %>
 
+    <%
+        String dbError = (String) request.getAttribute("dbError");
+        if (dbError != null && !dbError.isEmpty()) {
+    %>
+        <div style="color: red; font-weight: bold; margin: 1em 0;">
+            <%= escapeHtml(dbError) %>
+        </div>
+    <%
+        }
+    %>
     <jsp:include page="/WEB-INF/handleEditUserInfo.jsp" />
 
     <%
