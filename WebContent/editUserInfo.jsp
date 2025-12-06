@@ -115,7 +115,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Postal code</label>
+                        <label class="form-label">Postal Code</label>
                         <input type="text" name="postalCode" class="form-control"
                                value="<%= escapeHtml(postalCode) %>">
                     </div>
