@@ -83,7 +83,7 @@
                     <label class="form-label" for="state">State</label>
                     <input class="form-control" id="state" name="state"
                            value="<%= escapeHtml(request.getParameter("state")) %>"
-                            required>
+                           required>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="postalCode">Postal Code</label>
