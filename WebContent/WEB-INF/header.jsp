@@ -1,4 +1,4 @@
-<% include file="/WEB-INF/escapeHTML.jsp" %>
+<%@ include file="/WEB-INF/escapeHTML.jsp" %>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 
