@@ -1,8 +1,6 @@
 <%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
-
-<%@ page import="java.sql.*" %>
-<%@ page import="java.text.NumberFormat" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/WEB-INF/auth.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,9 +9,12 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/header.jsp" />
+
     <h1>Your Orders</h1>
 
-    // load from tag
-    <shop:listUserOrders />
+    <jsp:include page="/WEB-INF/listUserOrders.jsp">
+        <jsp:param name="userId" value="${sessionScope.authenticatedUser}" />
+    </jsp:include>
+
 </body>
 </html>
