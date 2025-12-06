@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/jdbc.jsp" %>
 <%@ include file="/WEB-INF/auth.jsp"%>
+<%@ include file="/WEB-INF/escapeHTML.jsp" %>
 
 <%@ taglib prefix="shop" tagdir="/WEB-INF/tags" %>
 
@@ -12,19 +13,6 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/header.jsp" />
-
-<%!
-    private String escapeHtml(String s) {
-        if (s == null) return "";
-        // order matters: escape & first
-        s = s.replace("&", "&amp;");
-        s = s.replace("<", "&lt;");
-        s = s.replace(">", "&gt;");
-        s = s.replace("\"", "&quot;");
-        s = s.replace("'", "&#x27;");
-        return s;
-    }
-%>
 
 <%
 	String userName = (String) session.getAttribute("authenticatedUser");
