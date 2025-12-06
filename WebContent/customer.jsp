@@ -77,7 +77,7 @@ try {
 	rs.close();
 	ps.close();
 } catch (SQLException e) {
-	out.println("<p>Error retrieving customer information: " + e + "</p>");
+	out.println("<p>Error retrieving customer information: " + escapeHtml(e.getMessage()) + "</p>");
 } finally {
 	closeConnection();
 }
