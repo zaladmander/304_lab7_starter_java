@@ -71,6 +71,9 @@
     </tr>
 <%
         } while (rs.next());
+%>
+</table>
+<%
     } catch (SQLException e) {
         // Log the exception server-side for debugging
         System.err.println("Error loading user orders:");
@@ -89,4 +92,3 @@
         }
     }
 %>
-</table>
