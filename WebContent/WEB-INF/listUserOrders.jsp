@@ -7,6 +7,8 @@
     String userId = request.getParameter("userId");
     NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
     try {
         getConnection();
 
@@ -19,17 +21,9 @@
             "WHERE c.userid = ? " +
             "ORDER BY o.orderDate DESC";
 
-        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt = con.prepareStatement(sql);
         pstmt.setString(1, userId);
-        ResultSet rs = pstmt.executeQuery();
-
-        if (!rs.next()) {
-            out.println("<p>You have no orders.</p>");
-            rs.close();
-            pstmt.close();
-            closeConnection();
-            return;
-        }
+        rs = pstmt.executeQuery();
 %>
 
 <table border="1" cellpadding="5" cellspacing="0">
@@ -41,7 +35,7 @@
     </tr>
 
 <%
-        while (rs.next()) {
+        do {
             int orderId = rs.getInt("orderId");
 %>
     <tr>
@@ -63,11 +57,7 @@
         </td>
     </tr>
 <%
-        }
-
-        rs.close();
-        pstmt.close();
-        closeConnection();
+        } while (rs.next());
     } catch (SQLException e) {
         // Log the exception server-side for debugging
         System.err.println("Error loading user orders:");
@@ -75,6 +65,14 @@
 %>
     <p style="color:red;">Error loading your orders. Please try again later.</p>
 <%
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
+            closeConnection();
+        } catch (SQLException e) {
+            // log error
+        }
     }
 %>
 </table>
