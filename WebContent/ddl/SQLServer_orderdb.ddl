@@ -146,7 +146,6 @@ CREATE TABLE review (
 INSERT INTO category(categoryName) VALUES ('Manga');
 INSERT INTO category(categoryName) VALUES ('Sci-fi');
 INSERT INTO category(categoryName) VALUES ('horror');
-INSERT INTO category(categoryName) VALUES ('textbooks');
 INSERT INTO category(categoryName) VALUES ('romance');
 INSERT INTO category(categoryName) VALUES ('mystery');
 INSERT INTO category(categoryName) VALUES ('distopia');
@@ -157,10 +156,63 @@ VALUES ('JoJo's Bizarre Adventure: Part 7--Steel Ball Run, Vol. 4',
          1, 
         'The legendary Shonen Jump series is now available in deluxe hardcover editions featuring color pages! JoJo’s Bizarre Adventure is a groundbreaking manga famous for its outlandish characters, wild humor, and frenetic battles. The hunt for the Holy Corpse is on! Gyro and Johnny have managed to get ahold of the second body part, the eyeballs, but can they keep Dio from getting his claws on them? And with a new enemy closing in on them, there’s no telling who will be the last to get the corpse!',
         34.00);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('One-Punch Man, Vol. 7',
+         1, 
+        'Life gets pretty boring when you can beat the snot out of any villain with just one punch.',
+        15.99);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('Dune',
+         2, 
+        'Set on the desert planet Arrakis, a world more awesome than any other in literature, Dune begins the story of the man known as Maud'dib -- and of a great family's plan to bring to fruition humankind's most ancient and unattainable dream.',
+        36.5);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('The Martian: A Novel',
+         2, 
+        'A mission to Mars. A freak accident. One man’s struggle to survive. From the author of Project Hail Mary comes “a hugely entertaining novel that reads like a rocket ship afire”',
+        25.99);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('IT',
+         3, 
+        'Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.',
+        34.00);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('The Shining',
+         3, 
+        '“An undisputed master of suspense and terror.”',
+        27.99);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('The Mating Game',
+         4, 
+        'Two wolf shifters reluctant to love discover there’s no fighting the call of the wild in this steamy romance by USA Today bestselling author Lana Ferguson.',
+        25.99);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('The Proving Ground: A Lincoln Lawyer Novel',
+         5, 
+        'Following his “resurrection walk” and need for a new direction, Mickey Haller turns to public interest litigation, filing a civil lawsuit against an artificial intelligence company whose chatbot told a sixteen-year-old boy that it was okay for him to kill his ex-girlfriend for her disloyalty.',
+        42.00);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('All the Water in the World',
+         6, 
+        'All the Water in the World is told in the voice of a girl gifted with a deep feeling for water. In the years after the glaciers melt, Nonie, her older sister and her parents and their researcher friends have stayed behind in an almost deserted New York City, creating a settlement on the roof of the American Museum of Natural History.',
+        39.00);
+INSERT product(productName, categoryId, productDesc, productPrice) 
+VALUES ('The Lord of the Rings: Special Edition',
+         7, 
+        'J. R. R. Tolkien and Lord of the Rings enthusiasts will want to own this very special edition of the classic masterpiece illustrated throughout in color by the author himself and with the complete text printed in two colors--the perfect gift idea!',
+        325.00);
 
-
+        
 UPDATE Product SET productImageURL = 'img/JOJO.jpg.avif' WHERE ProductId = 1;
-
+UPDATE Product SET productImageURL = 'img/OPM.jpg.avif' WHERE ProductId = 2;
+UPDATE Product SET productImageURL = 'img/Dune.avif' WHERE ProductId = 3;
+UPDATE Product SET productImageURL = 'img/Martian.avif' WHERE ProductId = 4;
+UPDATE Product SET productImageURL = 'img/IT.avif' WHERE ProductId = 5;
+UPDATE Product SET productImageURL = 'img/Shining.avif' WHERE ProductId = 6;
+UPDATE Product SET productImageURL = 'img/The Mating Game.avif' WHERE ProductId = 7;
+UPDATE Product SET productImageURL = 'img/The Proving Ground: A Lincoln Lawyer Novel.avif' WHERE ProductId = 8;
+UPDATE Product SET productImageURL = 'img/All the Water in the World.avif' WHERE ProductId = 9;
+UPDATE Product SET productImageURL = 'img/The Lord of the Rings: Special Edition.avif' WHERE ProductId = 10;
 
 INSERT INTO warehouse(warehouseName) VALUES ('Main warehouse');
 INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (1, 1, 5, 18);
