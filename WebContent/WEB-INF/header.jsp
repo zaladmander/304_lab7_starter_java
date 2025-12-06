@@ -55,7 +55,7 @@
                 <!-- Logged in: show account-related stuff -->
                 <li><a href="customer.jsp">Account details</a></li>
                 <!-- replace list order with personal order history -->
-                <!-- <li><a href="listorder.jsp">Order status</a></li> -->
+                <li><a href="userOrders.jsp">Order history</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.jsp">Logout</a></li>
             <% } %>
