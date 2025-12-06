@@ -106,10 +106,9 @@
         errors.add("Unable to update account information. Please try again.");
         System.err.println("SQL error updating account info for user " + userName + ": " + e.getMessage());
         request.setAttribute("editErrors", errors);
+        closeConnection();
         request.getRequestDispatcher("editUserInfo.jsp").forward(request, response);
         return;
-    } finally {
-        closeConnection();
     }
 
     request.setAttribute("editErrors", errors);
